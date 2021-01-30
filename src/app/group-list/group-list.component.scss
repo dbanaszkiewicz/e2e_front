@@ -1,0 +1,147 @@
+
+@import "../../styles/global-styles";
+
+.search {
+  height: 35px;
+  margin: 0 !important;
+  position: relative;
+  z-index: 50;
+  width: 100%;
+}
+
+.group-list {
+  width: 100%;
+  height: calc(100% - 95px);
+
+  &__element {
+    border-bottom: solid 1px #252525;
+    height: 60px;
+    cursor: pointer;
+    display: list-item;
+    color: #a8a8a8;
+    padding: 0 10px;
+
+    &.active {
+      background: #33586a;
+    }
+
+    &:last-of-type {
+      border: none !important;
+    }
+
+    &__description {
+      height: 60px;
+      width: 100%;
+      line-height: 60px;
+      display: inline-block;
+
+      & > i {
+        position: relative;
+        top: -47px;
+        font-size: 0.75em;
+        color: #000;
+      }
+
+      & > .group_name {
+        float: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 225px;
+
+        &.full {
+          width: 280px;
+        }
+      }
+
+      & .unread-messages {
+        float: right;
+        margin-right: 10px;
+        background: darkred;
+        color: white;
+        padding: 10px;
+        border-radius: 100%;
+        line-height: 9px;
+        margin-top: 15px;
+      }
+    }
+
+
+    &:hover {
+      background-color: rgba(0, 76, 161, 0.1) !important;
+    }
+  }
+}
+
+.new-conversation {
+  height: 58px;
+  border-top: solid 1px black;
+  cursor: pointer;
+
+    & > .text {
+      height: 58px;
+      width: 100%;
+      font-weight: bold;
+      margin-top: -2px;
+
+      & > .fas {
+        font-family: FontAwesome;
+        font-size: 41px;
+        margin-top:-12px;
+        margin-right: 10px;
+      }
+
+      & > .description {
+        position: relative;
+        top: -10px;
+      }
+    }
+
+  &:hover {
+    background-color: rgba(0, 76, 161, 0.8) !important;
+  }
+
+}
+
+
+.action {
+  @include media-breakpoint-up(md ) {
+    .c1 {
+      margin-top: 30px;
+    }
+  }
+
+  .c2 {
+    margin-top: 50px;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 15px !important;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.login_form {
+  width: 100%;
+}
+
+.select-list {
+  width: 100%;
+  position: relative;
+  top: -6px;
+  background: #33586a;
+  border: 1px solid black;
+  z-index: 1;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: -200px;
+  }
+
+  & .item {
+
+    &:hover {
+      background: #243d4a;
+      cursor: pointer;
+    }
+  }
+}

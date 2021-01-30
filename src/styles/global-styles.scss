@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@include media-breakpoint-down(sm) {
+    h1 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
+
+
+input {
+    border: 1px solid black !important;
+    background: rgba(58, 113, 137, 0.62) !important;
+    border-radius: 2px !important;
+    padding: 3px 10px !important;
+    margin: 5px 0 !important;
+    color: white !important;
+
+    &:focus {
+        background: rgba(73, 170, 198, 0.74) !important;
+        color: white !important;
+    }
+
+    &::placeholder {
+        color: #c5c5c5 !important;
+    }
+}
+
+.btn-own {
+    background: rgba(58, 113, 137, 0.62);
+    color: white;
+
+    &.disabled:hover {
+        cursor: not-allowed;
+        background: rgba(58, 113, 137, 0.62);
+    }
+
+    &:hover {
+        background: rgba(84, 203, 236, 0.87);
+    }
+}
+
+
+.btn-action {
+    padding: 15px;
+    margin-top: 15px;
+    width: 300px;
+    max-width: 100%;
+    background: rgba(58, 113, 137, 0.62);
+    color: white;
+
+    &.disabled:hover {
+        cursor: not-allowed;
+        background: rgba(58, 113, 137, 0.62);
+    }
+
+    &:hover {
+        background: rgba(84, 203, 236, 0.87);
+    }
+}
+
+
+hr {
+    border-color: white;
+}
+
+
+.important-info {
+    background: rgba(73, 170, 198, 0.74);
+    padding: 10px;
+    margin: 5px 0;
+    color: gold;
+    font-weight: bold;
+    font-size: 12px;
+
+    a {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.success-info {
+    background: rgba(58, 113, 137, 0.62);
+    padding: 10px;
+    margin: 5px 0;
+    color: greenyellow;
+    font-weight: bold;
+    font-size: 12px;
+
+    a {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+a, a:active, a:focus{
+    outline:none !important;
+}

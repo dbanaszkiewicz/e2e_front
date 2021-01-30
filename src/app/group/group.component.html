@@ -1,0 +1,87 @@
+<div *ngIf="id !== null && !loading" style="padding: 15px;">
+    <div class="row">
+        <div class="col-sm-12 col-lg-6" style="line-height: 31px;">
+            {{groupInfo.name}}
+            <b style="color: cornflowerblue" *ngIf="groupInfo.type === 'private'">(Wiadomość bezpośrednia)</b>
+        </div>
+        <div class="col-sm-12 col-lg-6 text-right">
+            <div class="btn-group" role="group" *ngIf="groupInfo.type === 'group'">
+                <button class="btn btn-sm btn-dark" (click)="removeFromGroup()">Opuść grupę</button>
+                <button class="btn btn-sm btn-dark" (click)="addUserOpened=true">
+                    Dodaj użytkownika do grupy
+                </button>
+                <button class="btn btn-sm btn-dark" (click)="userListOpened=true">
+                    Lista użytkowników w grupie
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-10">
+            <input type="text" [(ngModel)]="messageString" class="form form-control" (keyup)="keyup($event)"
+                   placeholder="Napisz wiadomość">
+        </div>
+        <div class="col-2" style="padding-left: 0;">
+            <button class="btn btn-action" style="margin-top: 4px;padding: 7px 10px;" (click)="send()">Wyślij</button>
+        </div>
+    </div>
+
+    <ng-scrollbar class="message-container">
+        <div class="scroll-messages">
+        <ng-template ngFor let-message [ngForOf]="messages">
+            <div class="message" [ngClass]="{'my-message': message.my}" *ngIf="message.type === 'message'">
+                <div class="user">{{message.user.login}}  <span class="fas fa-envelope priv" (click)="newPrivMessage(message.user.id)" *ngIf="appClassRef.userData.id !== message.user.id && groupInfo.type !== 'private'"><div class="tooltip-priv">Wyślij bezpośrednią wiadomość</div></span>
+                    <small> [{{message.time}}]</small>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 break-word message-content">{{message.message}}</div>
+                </div>
+            </div>
+            <div class="service" *ngIf="message.type === 'service'">
+                <small class="service__message">{{message.message}}</small>
+                <small class="time">[{{message.time}}]</small>
+            </div>
+        </ng-template>
+        </div>
+    </ng-scrollbar>
+
+
+    <app-modal [opened]="addUserOpened" (onClose)="closeAddUserModal()">
+        <b>Dodaj użytkownika do grupy</b>
+                <div>
+                    <input class="form form-control login_form" placeholder="Wpisz nazwę użytkownika..." [(ngModel)]="addUserLogin" (ngModelChange)="changeAddUser()">
+                    <div class="select-list" *ngIf="addUserLogin.length > 2 && addUserList.length > 7" style="height: 200px;">
+                        <ng-scrollbar class="message-container">
+                            <ng-template ngFor let-user [ngForOf]="addUserList">
+                                <div class="item" (click)="addUser(user.id)">{{user.login}}</div>
+                            </ng-template>
+                        </ng-scrollbar>
+                    </div>
+                    <div class="select-list" *ngIf="addUserLogin.length > 2 && addUserList.length <= 7">
+                        <ng-template ngFor let-user [ngForOf]="addUserList">
+                            <div class="item" (click)="addUser(user.id)">{{user.login}}</div>
+                        </ng-template>
+                    </div>
+                </div>
+    </app-modal>
+
+    <app-modal [opened]="userListOpened" (onClose)="userListOpened = false">
+        <b>Lista użytkowników w grupie:</b><br />
+
+                        <ng-template ngFor let-user [ngForOf]="groupInfo.users">
+                            <div class="user-list_item">{{user.login}} <span class="fas fa-envelope priv" (click)="newPrivMessage(user.id)" *ngIf="appClassRef.userData.id !== user.id"><div class="tooltip-priv">Wyślij bezpośrednią wiadomość</div></span></div>
+                        </ng-template>
+    </app-modal>
+</div>
+
+<div class="container-fluid text-center" *ngIf="id === null && !loading">
+    <br />
+        <h2>Dołącz do grupy aby napisać nową wiadomość!</h2>
+    <br />
+        <h3>Wybierz grupę z listy, bądź rozpocznij nową konsersację z innym użytkownikem. Możesz również utworzyć nową grupę i dodać do niej wybranych użytkowników.</h3>
+    <br />
+    <button class="btn btn-action" (click)="joinToGroup()">Utwórz grupę lub rozpocznij konwersację z użytkownikiem</button>
+</div>
+
+<loader [visible]="loading"></loader>

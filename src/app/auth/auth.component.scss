@@ -1,0 +1,92 @@
+
+@import "../../styles/global-styles";
+
+.jumbotron {
+  background: none;
+}
+
+.box {
+  background: #283038;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.warning-box {
+  background: #691200;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+
+  .head-text {
+    font-size: 20px;
+  }
+  
+  .fas {
+    font-style: normal;
+    font-size: 60px;
+  }
+}
+
+.register {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+
+  .my-modal {
+    background: #283038;
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+    margin-top: 130px;
+    margin-bottom: 100px;
+
+    .close {
+      position: relative;
+      top: 0px;
+      right: 0px;
+      width: 0;
+      height: 0;
+      border-top: 70px solid #F34A53;
+      border-left: 70px solid transparent;
+      margin: 0 auto 0;
+      font-family: FontAwesome;
+
+      i {
+        position: relative;
+        top: -60px;
+        left: -30px;
+      }
+    }
+
+    .content {
+      padding: 50px;
+
+      .important-info {
+        background: rgba(73, 170, 198, 0.74);
+        padding: 10px;
+        margin: 5px 0;
+        color: gold;
+        font-weight: bold;
+
+        a {
+          text-decoration: underline;
+          color: yellow;
+          cursor: pointer;
+        }
+      }
+
+      .success-info {
+        background: rgba(58, 113, 137, 0.62);
+        padding: 10px;
+        margin: 5px 0;
+        color: greenyellow;
+        font-weight: bold;
+        font-size: 12px;
+      }
+    }
+  }
+}

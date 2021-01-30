@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h2><p>e2e Text Communicator</p></h2>
+    <div class="menu">
+      <div class="user"><div><span>{{userData.login}}</span></div> <span class="fas fa-angle-double-down"></span></div>
+      <div class="items">
+        <a (click)="openedSettings = true">Ustawienia konta</a>
+        <a (click)="logout.emit()">Wyloguj się</a>
+      </div>
+    </div>
+</div>
+
+
+<app-modal [opened]="openedSettings" (onClose)="closeSettings()">
+  <div class="row action">
+    <div class="col-sm-12 col-lg-5 c1">
+      Zmiana hasła
+      <div>
+        <input class="form form-control" type="password" placeholder="Wpisz aktualne hasło" [(ngModel)]="changePassword.old">
+        <input class="form form-control" type="password" placeholder="Wpisz nowe hasło" [(ngModel)]="changePassword.new">
+        <input class="form form-control" type="password" placeholder="Wpisz ponownie nowe hasło" [(ngModel)]="changePassword.repNew">
+        <button class="btn btn-action" (click)="changePasswordAction()">Zmień hasło!</button>
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-2 c2">
+      <span style="color: lightskyblue">lub</span>
+    </div>
+    <div class="col-sm-12 col-lg-5 c3">
+      Usuń konto
+
+      <input class="form form-control" type="password" placeholder="Wpisz aktualne hasło" [(ngModel)]="deletePass">
+      <button class="btn btn-action" (click)="deleteAccountAction()">Usuń konto!</button>
+    </div>
+  </div></app-modal>

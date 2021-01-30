@@ -1,0 +1,19 @@
+<app-auth [visible]="isLogged === false"></app-auth>
+<div class="container-fluid" *ngIf="isLogged === true">
+
+    <div class="navbar">
+        <app-navbar (logout)="logout()"></app-navbar>
+    </div>
+    <div id="container">
+        <input type="checkbox" id="sidebar-toggle">
+        <label id="sidebar-toggle-label" for="sidebar-toggle"></label>
+        <div class="sidebar">
+            <app-group-list></app-group-list>
+        </div>
+        <div class="body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<loader [visible]="loading"></loader>
+<app-alerts></app-alerts>

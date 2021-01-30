@@ -1,0 +1,173 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../styles/global-styles";
+
+body, html, .container-fluid, .sidebar, .body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: FontAwesome;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  @keyframes sidebar-open {
+    from {
+      margin-left: -300px;
+    }
+
+    to {
+      margin-left: 0px;
+    }
+  }
+
+  @keyframes sidebar-close {
+    from {
+      margin-left: 0px;
+    }
+
+    to {
+      margin-left: -300px;
+    }
+  }
+
+  @keyframes sidebar-toggle-open {
+    from {
+      left: 0px;
+    }
+
+    to {
+      left: 299px;
+    }
+  }
+
+  @keyframes sidebar-toggle-close {
+    from {
+      left: 299px;
+    }
+
+    to {
+      left: 0px;
+    }
+  }
+  #sidebar-toggle {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+
+    & ~ .sidebar{
+      animation-duration: 0.5s;
+      animation-name: sidebar-toggle-close;
+      position: absolute;
+      background-color: #323a42;
+      width: calc(300px);
+      float:left;
+      height:100%;
+      z-index: 2;
+      margin-left: -300px;
+      overflow: auto;
+      top: 0;
+      opacity: 0;
+      border-right: 1px solid black;
+    }
+
+
+    &:checked {
+
+      & ~ #sidebar-toggle-label {
+        animation-duration: 0.5s;
+        animation-name: sidebar-toggle-open;
+        left: 299px;
+        z-index: 2;
+
+        &:after {
+          font-family: FontAwesome;
+          content: "\f0d9";
+        }
+      }
+
+      & ~ .sidebar {
+        animation-duration: 0.5s;
+        animation-name: sidebar-open;
+        margin-left: 0;
+      }
+    }
+  }
+
+
+  #sidebar-toggle-label {
+    opacity: 0;
+    animation-duration: 0.5s;
+    animation-name: sidebar-toggle-close;
+    z-index: 3;
+    margin-top: 100px;
+    padding: 10px 7px;
+    position: absolute;
+    border: solid 1px black;
+    border-left: none;
+    background-color: #283038;
+
+    &:after {
+      font-family: FontAwesome;
+      content: "\f0da";
+    }
+  }
+
+
+
+  .body{
+    background-color: #3c444c;
+    width:100%;
+    height:100% !important;
+
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+  #sidebar-toggle {
+    display: none;
+  }
+
+  #sidebar-toggle-label {
+    display: none;
+  }
+
+  .sidebar{
+    background-color: #323a42;
+    width:300px;
+    float:left;
+    height:100%;
+    overflow: auto;
+    border-right: solid 1px black;
+  }
+
+  .body{
+    background-color: #3c444c;
+    float:left;
+    width: calc(100% - 300px);
+    height:100%;
+
+  }
+}
+
+
+#container{
+  width: 100%;
+  height:calc(100% - 40px);
+  /* position:absolute; */
+}
+
+
+.navbar {
+  height: 40px;
+  position: relative;
+  background-color: #283038;
+  width:100%;
+  padding: 0;
+  border-bottom: solid 1px black;
+
+  & > app-navbar {
+    width: 100%;
+  }
+}

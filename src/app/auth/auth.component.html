@@ -1,0 +1,107 @@
+<div class="container-fluid" *ngIf="visible === true">
+  <br /><br /><br />
+  <div class="container">
+      <div class="row">
+        <div class="col-12  text-center">
+          <h2>e2e Text Communicator</h2>
+        </div>
+      </div>
+      <br />
+      <div class="container">
+        <div class="row justify-content-lg-center">
+          <div class="col-md-12 col-lg-5 box text-center">
+                <h1>Logowanie</h1>
+                <br />
+                <input type="text" class="form-control" placeholder="Login" [(ngModel)]="loginData.login" aria-label="Login" aria-describedby="login" (keyup)="keyupLogin($event)">
+                <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="loginData.password" aria-label="Hasło" aria-describedby="password" (keyup)="keyupLogin($event)">
+                <button class="btn btn-own" *ngIf="!RSA.isKeyLoaded()" (click)="loadPrivKey()">Załaduj plik klucza prywatnego</button>
+            <div class="success-info" *ngIf="RSA.isKeyLoaded()">
+              Twój klucz służący do szyfrowania danych jest załadowany.
+            </div>
+            <br *ngIf="!RSA.isKeyLoaded()" />
+                <button class="btn btn-action" (click)="login()">Zaloguj się!</button>
+            <br />
+            <ng-template [ngIf]="!RSA.isKeyLoaded()">
+              <br />
+              <hr />
+              <h3>Nie masz jeszcze konta?</h3>
+              <button class="btn btn-action" (click)="openedRegisterModal=true">Załóż nowe konto!</button>
+            </ng-template>
+            <br />
+            <share-buttons [theme]="'material-dark'"
+                           [include]="['facebook','twitter','linkedin']"
+                           [show]="3"
+                           [showText]="true"
+                           [size]="-4"
+                           [url]="'https://e2e.vdb.ovh'"
+            ></share-buttons>
+          </div>
+        </div>
+      </div>
+    <br />
+    <div class="container" *ngIf="RSA.isKeyLoaded()">
+      <div class="row justify-content-lg-center">
+        <div class="col-md-12 col-lg-12 warning-box">
+          <div class="row">
+            <div class="col-0 col-sm-2 col-lg-1 text-center">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="col-12 col-sm-10 col-lg-11">
+              <p class="head-text font-weight-bold">Klucz prywatny szyfrowania jest zapisany w tej przeglądarce!</p>
+              <p>Twój klucz prywatny został zapisany w tej przeglądarce. Jeśli jest to zaufane urządzenie, zaleczmy pozostawić zapisany klucz w pamięci przeglądarki.
+                Jeśli logujesz się z komputera publicznego lub z obcego urządzenia, usuń swój klucz prywatny.</p>
+              <div class="row">
+                <div class="col-12 text-right"><button class="btn btn-sm btn-warning" (click)="removeKey()">Usuń klucz prywatny!</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+          <br />
+      <div class="row justify-content-lg-center">
+        <div class="col-md-12 col-lg-12 warning-box">
+          <div class="row">
+            <div class="col-0 col-sm-2 col-lg-1 text-center">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="col-12 col-sm-10 col-lg-11">
+              <p class="head-text font-weight-bold">Pobierz kopię klucza, aby zalogować się z innej przeglądarki!</p>
+              <p>Tówj klucz prywatny będzie wymagany podczas logowania na każdym nowym urządzeniu/nowej przeglądarce.
+                Zrób kopię swojego klucza i przechowuj ją w bezpiecznym miejscu.
+                Pamiętaj, że bez klucza nie będziesz miał dostępu do konta ani możliwości przeczytania wysłanych do Ciebie wiadomości!</p>
+              <div class="row">
+                <div class="col-12 text-right"><button class="btn btn-sm btn-warning" (click)="downloadKey()">Zapisz klucz na komputerze!</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+    </div>
+    </div>
+</div>
+
+<div class="register" *ngIf="openedRegisterModal === true">
+  <div class="my-modal text-center">
+    <div class="close" (click)="openedRegisterModal = false"><i class="fas fa-times"></i></div>
+    <div class="content">
+      <h1>Rejestracja konta</h1>
+      <br /><br />
+        <input type="text" class="form-control" placeholder="Login" [(ngModel)]="registerData.login" aria-label="Login" aria-describedby="loginr" (keyup)="keyupRegister($event)">
+
+        <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="registerData.password" aria-label="Hasło" (keyup)="keyupRegister($event)" aria-describedby="passwordr">
+        <input type="password" class="form-control" placeholder="Potwierdź hasło" [(ngModel)]="registerData.passwordr" aria-label="Potwierdź hasło" (keyup)="keyupRegister($event)" aria-describedby="passwordrr">
+
+      <div class="important-info" *ngIf="!RSA.isKeyLoaded()">
+        Twój klucz służący do szyfrowania danych nie został załadowany. <a (click)="RSA.generateKey()">Kliknij tutaj</a>, aby wygenerować nowy klucz i przypisać go do tej przeglądarki.
+      </div>
+      <div class="success-info" *ngIf="RSA.isKeyLoaded()">
+        Twój klucz służący do szyfrowania danych został załadowany.
+      </div>
+
+      <button class="btn btn-action" [ngClass]="{disabled: !RSA.isKeyLoaded()}" (click)="register()">Załóż konto!</button>
+    </div>
+  </div>
+</div>

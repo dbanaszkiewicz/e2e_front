@@ -1,0 +1,55 @@
+<input type="text" class="search" placeholder="Znajdź grupę" [(ngModel)]="groupSearchString" (blur)="blurSearch()" (focus)="focusSearch()">
+<ng-scrollbar class="group-list">
+  <ng-template  ngFor let-group [ngForOf]="groups">
+  <a class="group-list__element" *ngIf="isVisible(group.name)" (click)="clearSearchString()" [routerLink]="'/conversation/' + group.id" [ngClass]="{active: this.activeGroup === group.id}">
+    <div class="group-list__element__description">
+      <span class="group_name" [ngClass]="{full: this.activeGroup === group.id || +group.newMessages === 0}">
+        {{group.name}}
+      </span>
+      <span class="unread-messages" *ngIf="this.activeGroup !== group.id && +group.newMessages > 0 && +group.newMessages < 100">{{group.newMessages}}</span>
+      <span class="unread-messages" *ngIf="this.activeGroup !== group.id && +group.newMessages >100"></span>
+      <i *ngIf="group.type === 'private'">Konwersacja bezpośrednia</i>
+    </div>
+  </a>
+  </ng-template>
+</ng-scrollbar>
+<div class="new-conversation" (click)="openModal()">
+    <div class="text text-center">
+      <span class="fas fa-comments"></span>
+      <span class="description">Napisz nową wiadomość</span>
+    </div>
+</div>
+
+
+<app-modal [opened]="openedModal" (onClose)="openedModal = false">
+  <div class="row action">
+    <div class="col-sm-12 col-lg-5 c1">
+      Napisz do użytkownika
+      <div>
+        <input class="form form-control login_form" placeholder="Wpisz nazwę użytkownika..." [(ngModel)]="join.user" (ngModelChange)="changeJoinUser()">
+        <div class="select-list" *ngIf="join.user.length > 2 && joinUserList.length > 7" style="height: 200px;">
+          <ng-scrollbar class="message-container">
+            <ng-template ngFor let-user [ngForOf]="joinUserList">
+              <div class="item" (click)="writeToUser(user.id)">{{user.login}}</div>
+            </ng-template>
+          </ng-scrollbar>
+        </div>
+        <div class="select-list" *ngIf="join.user.length > 2 && joinUserList.length <= 7">
+            <ng-template ngFor let-user [ngForOf]="joinUserList">
+              <div class="item" (click)="writeToUser(user.id)">{{user.login}}</div>
+            </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-2 c2">
+      <span style="color: lightskyblue">lub</span>
+    </div>
+    <div class="col-sm-12 col-lg-5 c3">
+      Utwórz nową grupę
+
+      <input class="form form-control" placeholder="Nazwa grupy" [(ngModel)]="newGroup.name">
+
+      <button class="btn btn-action" (click)="createGroup()">Utwórz grupę!</button>
+    </div>
+  </div>
+</app-modal>

@@ -1,0 +1,8 @@
+<div class="my-modal-container" *ngIf="opened">
+  <div class="my-modal text-center">
+    <div class="close" (click)="onClose.emit()"><i class="fas fa-times"></i></div>
+    <div class="content">
+     <ng-content></ng-content>
+    </div>
+  </div>
+</div>

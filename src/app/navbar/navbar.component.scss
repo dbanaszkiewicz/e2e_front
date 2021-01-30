@@ -1,0 +1,89 @@
+
+
+@import "../../styles/global-styles";
+
+h2 {
+  float: left;
+}
+
+@media only screen and (max-width: 1000px) {
+  h2 p {
+    display: none;
+  }
+ h2:after {
+   content: "e2e TC";
+ }
+
+}
+
+@media only screen and (min-width: 1001px) {
+
+
+}
+
+.container-fluid {
+  padding-right: 0;
+}
+
+
+.menu {
+  background: #243d4a;
+  width: 180px;
+  float: right;
+  display: inline;
+  position: relative;
+  z-index: 1;
+  border: 1px solid black;
+  border-top: none;
+
+  & > .user {
+    height: 39px;
+    font-size: 1.2em;
+    line-height: 39px;
+    padding: 0 10px;
+
+    & > div {
+      width: 145px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    & > span.fas {
+      float: right;
+    }
+
+  }
+
+  & > .items {
+    display: none;
+  }
+
+  &:hover {
+    & > .items {
+      display: block;
+
+      & > a {
+        display: block;
+        border-top: 1px solid black;
+        padding: 10px 10px;
+
+        &:hover {
+          cursor: pointer;
+          background: #3c444c;
+        }
+      }
+    }
+  }
+}
+
+
+.c2 {
+  margin-top: 105px;
+}
+
+.c3 {
+  margin-top: 35px;
+}

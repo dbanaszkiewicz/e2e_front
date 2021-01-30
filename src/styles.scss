@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import '~@ngx-share/button/themes/material/material-dark-theme';
+
+body, html, .container-fluid, .sidebar, .body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: Helvetica, Arial, sans-serif, FontAwesome !important;
+}
+
+body {
+    background-color: #3c444c;
+    font-family: Helvetica, Arial, sans-serif, FontAwesome !important;
+}
+
+.ng-scrollbar-visible {
+    padding: 4px !important;
+}
+.ng-scrollbar {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 4px !important;
+}
+.ng-scrollbar-thumb {
+    background-color: rgba(0, 76, 161, 0.8) !important;
+}
+.ng-scrollbar-thumb:hover,
+.ng-scrollbar-thumb:active {
+     background-color: rgba(0, 98, 161, 0.85) !important;
+
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.header {
+    background: rgba(0, 16, 50, 0.75);
+    color: white;
+    margin-bottom: 20px;
+}
+
+
+.alertsContainer {
+    position: fixed !important;
+    z-index: 9999;
+}
+
+.alertsRow>.messagepanel {
+    height: 100% !important;
+    margin-left: 50px;
+}
+
+.alertsRow>.iconpanel {
+    padding: 0 !important;
+    position: absolute;
+    height: 100% !important;
+}
+
+.alertsRow>.closeicon {
+    display: none !important;
+}
+
+.panel-list {
+    padding: 0;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.panel-list-row {
+    padding: 15px;
+    border-bottom: 1px solid #8e8e8e;
+}
+
+.panel-list-row:hover {
+    background: rgba(7, 79, 238, 0.08);
+}
+
+.panel-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+.search {
+    margin-bottom: 10px;
+}
+
+app-group {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1001px) {
+
+    app-group {
+        width: calc(100% - 300px) !important;
+    }
+}
+
+.break-word {
+    word-wrap: break-word;
+}
